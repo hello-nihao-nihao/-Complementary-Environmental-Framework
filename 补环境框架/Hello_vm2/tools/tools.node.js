@@ -12,6 +12,7 @@ function Getcode(){
     code += fs.readFileSync(`${__dirname}/vm_print.js`)+"\r\n";
     //框架代理
     code += fs.readFileSync(`${__dirname}/vm_proxy.js`)+"\r\n";
+    code += fs.readFileSync(`${__dirname}/vm_tools.js`)+"\r\n";
     return code;
 }
 

@@ -5,3 +5,4 @@ hellovm.memory={
 };//默认关闭打印
 hellovm.memory.htmlelements={}
 hellovm.memory.listeners={}
+hellovm.memory.PluginArray={}

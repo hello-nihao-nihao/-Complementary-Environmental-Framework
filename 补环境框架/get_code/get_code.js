@@ -35,6 +35,7 @@ function getcode(pr,name_){
     return code
 }
 function console_code(pr,name_){
+    var console_code='';
     console_=getcode(pr,name_)
     console.log(console_)
 }

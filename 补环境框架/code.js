@@ -1,4 +1,23 @@
-hellovm.memory.Plugin.new({description:'Portable Document Format',filename:'internal-pdf-viewer',name:'PDF Viewer',MimeTypes:[]})
+var aaa=hellovm.memory.Plugin.new(
+    {
+        description:'Portable Document Format',
+        filename:'internal-pdf-viewer',
+        name:'PDF Viewer',
+        MimeTypes:[
+                    {
+                        description: "Portable Document Format",
+                        suffixes:"pdf",
+                        type: "application/pdf"
+                    },
+                    {
+                        description: "Portable Document Format",
+                        suffixes:"pdf",
+                        type: "application/pdf"
+                    }
+                    ]
+    })
+var a1=aaa[Symbol.iterator]()
+a1.next()
 debugger;
 function SDK() {
     var y = {};

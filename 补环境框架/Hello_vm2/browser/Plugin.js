@@ -1,9 +1,27 @@
 hellovm.memory.Plugin={}
 var Plugin=function Plugin() {
     throw new TypeError('Illegal constructor')
-};hellovm.safefunction(Plugin)
+};hellovm.safefunction(Plugin);
 hellovm.memory.Plugin.iterator= function values(){
     debugger;
+    return {
+        next:function (){
+            if(this.index_== undefined){
+                debugger;
+                this.index=0
+            }
+            var temp=this.self_[this.index_]
+            this.index_++;
+            if (temp!=undefined){
+            return {done:false,value:temp};
+            }
+            else{
+                return {done:false,value:temp};
+            }
+                
+        },
+        self_:this
+    }
 };hellovm.safefunction(hellovm.memory.Plugin.iterator)
 Object.defineProperties(Plugin.prototype,{
     [Symbol.toStringTag]:{
@@ -21,10 +39,16 @@ Plugin.prototype.filename='';
 Plugin.prototype.name='';
 Plugin.prototype.length=0;
 
-Plugin.prototype.item = function item(){debugger;}; hellovm.safefunction(Plugin.prototype.item)
+Plugin.prototype.item = function item(index){
+    debugger;
+    return this[index]
+}; hellovm.safefunction(Plugin.prototype.item)
 hellovm.rename(Plugin.prototype.item,'item')
 
-Plugin.prototype.namedItem = function namedItem(){debugger;}; hellovm.safefunction(Plugin.prototype.namedItem)
+Plugin.prototype.namedItem = function namedItem(key){
+    debugger;
+    return this[key]
+}; hellovm.safefunction(Plugin.prototype.namedItem)
 hellovm.rename(Plugin.prototype.namedItem,'namedItem')
 
 Plugin.prototype.__defineGetter__('description',function(){
@@ -61,15 +85,14 @@ hellovm.memory.Plugin.new = function(data){
 
         if(data.MimeTypes != undefined){
           for (let mtindex = 0; mtindex < data.MimeTypes.length; mtindex++) {
-              let mtindex = data.MimeTypes[mtindex]
-              let mimeType = hellovm.memory.MimeType.new(mtindex,plugin)
-
+              var mimeTypedata = data.MimeTypes[mtindex];
+              var mimeType = hellovm.memory.MimeType.new(mimeTypedata,plugin)
               plugin[mtindex] = mimeType
-              /* plugin[mimeType.type] = mimeType */
+            //   plugin[mimeType.type] = mimeType
               Object.defineProperty(plugin,mimeType.type,{
                     value:mimeType,
-              })
-
+                    configurable: true
+              });
             
         }}
           plugin.length = data.MimeTypes.length
